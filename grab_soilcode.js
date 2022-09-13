@@ -15,7 +15,7 @@ var lsib = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017"),
           
 var dataset = ee.ImageCollection('CSIRO/SLGA')
                   .filter(ee.Filter.eq('attribute_code', 'SOC'));
-var soilDepth = dataset.select('SOC_100_200_EV').toBands();
+var soilVar = dataset.select('SOC_100_200_EV').toBands();
 var crsTransform = [0.25,0,-180,0,-0.25,90];
 
 var geometry = ee.Geometry.Rectangle([112, 39.8412, 116.4849, 40.01236]);
@@ -26,7 +26,7 @@ var export_folder = "Soil";
 Map.addLayer(soilDepth,null,'test',false)
 
 Export.image.toDrive({
-  image: soilDepth,
+  image: soilVar,
   description: 'get_soil',
   folder: 'Soil',
   region:roi, // Box around Oz
