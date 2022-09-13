@@ -26,9 +26,6 @@ var export_folder = "Soil";
 Map.addLayer(soilDepth,null,'test',false)
 
 Export.image.toDrive({
-  // All tiles that intersect the region get exported in their entirety.
-  // Clip the image to prevent low resolution tiles from appearing outside
-  // of the region.
   image: soilDepth,
   description: 'get_soil',
   folder: 'Soil',
