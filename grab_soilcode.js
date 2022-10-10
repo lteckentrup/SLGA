@@ -12,15 +12,20 @@ var lsib = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017"),
           [112.20272355518692, -44.15049003535831],
           [154.39022355518694, -44.15049003535831],
           [154.39022355518694, -9.188607131443472]]], null, false);
-          
+
+#### You need to update 'SOC' this is the variable you want
 var dataset = ee.ImageCollection('CSIRO/SLGA')
                   .filter(ee.Filter.eq('attribute_code', 'SOC'));
+
+### You need to update 'SOC_100_200_EV', this is the name of the dataset
 var soilVar = dataset.select('SOC_100_200_EV').toBands();
+
 var crsTransform = [0.25,0,-180,0,-0.25,90];
 
 var geometry = ee.Geometry.Rectangle([112, 39.8412, 116.4849, 40.01236]);
 var out_proj = ee.Projection("EPSG:4326", crsTransform)
 
+### Export folder
 var export_folder = "Soil";
 
 Map.addLayer(soilDepth,null,'test',false)
